@@ -19,6 +19,6 @@
   "scripts": {
     "test": "node ./__tests__/service-one.test.js",
     "echo": "echo \"from service-one, okay\"" , 
-    "ex": "node ./lib/service-one.js"
+    "runlink": "node ./lib/service-one.js"
   }
 }
