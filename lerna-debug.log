@@ -1,6 +1,6 @@
 0 silly argv {
 0 silly argv   _: [ 'add' ],
-0 silly argv   scope: 'service-one',
+0 silly argv   scope: '@ts-omni/service-one',
 0 silly argv   globs: [],
 0 silly argv   lernaVersion: '6.1.0',
 0 silly argv   '$0': '/Users/matt/Documents/omni-nestjs-mono-repo/node_modules/.bin/lerna',

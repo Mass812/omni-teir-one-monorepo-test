@@ -1,0 +1,12 @@
+'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.greetUser = exports.serviceTwo = void 0;
+const serviceTwo = () => {
+    return "Hello from serviceTwo file";
+};
+exports.serviceTwo = serviceTwo;
+const greetUser = (name) => {
+    return `Hello ${name} from serviceTwo file`;
+};
+exports.greetUser = greetUser;
+//# sourceMappingURL=service-two.js.map

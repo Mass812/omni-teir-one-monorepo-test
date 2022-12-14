@@ -1,7 +1,7 @@
 'use strict';
-import {serviceTwo, greetUser} from '@ts-omni/service-two';
+import {serviceTwo, greetUser} from '../../service-two/lib/service-two';
 
-function serviceOne() {
+export function serviceOne() {
     // console log color pink
     console.log('\x1b[35m%s\x1b[0m', greetUser('John'));
     console.log('\x1b[34m%s\x1b[0m', serviceTwo());
