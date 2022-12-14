@@ -17,6 +17,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "file": "ts-node-esm ./lib/src/service-two.ts"
   }
 }
