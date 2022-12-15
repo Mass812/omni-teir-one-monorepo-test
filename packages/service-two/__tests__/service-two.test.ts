@@ -22,5 +22,6 @@ import {describe, expect, test} from '@jest/globals';
 describe('return string', () => {
   test('returns Hello from service two', () => {
     expect(serviceTwo()).toBe('Hello from serviceTwo file');
+    console.log('\x1b[34m\x1b[47m', 'serviceTwo tests passed', '\x1b[0m' );
   });
 });
