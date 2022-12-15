@@ -3,16 +3,32 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [],
+        "cacheableOperations": [
+          "build",
+          "file",
+          "test"
+        ],
         "accessToken": "ZmIwNzI4NjAtMWM5Zi00NzE1LThlZjQtNGE0YzE5ZmU2OTQ0fHJlYWQtd3JpdGU="
       }
     }
   },
   "targetDefaults": {
-    "build": {"dependsOn": ["^build"]},
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
     "test": {
       "dependsOn": [
-       "build"
+        "^test"
+      ]
+    },
+    "file": {
+      "dependsOn": [
+        "^file"
       ]
     }
   },
