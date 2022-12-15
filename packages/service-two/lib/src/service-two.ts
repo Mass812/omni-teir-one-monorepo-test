@@ -2,7 +2,8 @@
 
 
 export const serviceTwo =(): string => {
-    return "Hello from serviceTwo file";
+    const newLocal = "Hello from serviceTwo file";
+    return newLocal;
 }
 
 

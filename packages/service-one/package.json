@@ -16,9 +16,9 @@
     "access": "public"
   },
   "scripts": {
-    "tsc": "tsc",
+    "build": "tsc",
     "file": "ts-node-esm ./lib/src/service-one.ts",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "jest"
   },
   "dependencies": {
     "@ts-omni/service-two": "*"
