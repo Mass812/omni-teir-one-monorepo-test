@@ -5,22 +5,19 @@
   "author": "Matt Wellman <mwellman@fabletics.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "dist/service-one.js",
-  "typings": "dist/service-one.d.ts",
+  "main": "dist/lib/index.js",
+  "typings": "dist/lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "build": "tsc",
-    "file": "ts-node-esm ./lib/src/service-one.ts",
-    "test": "jest"
-  },
   "dependencies": {
-    "@ts-omni/service-two": "*"
+    "@ts-omni/service-two": "^0.0.0"
   }
 }

@@ -1,5 +1,5 @@
 export default {
-  displayName: 'service-two',
+  displayName: 'cache-service',
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': 'ts-jest',

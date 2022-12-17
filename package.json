@@ -5,12 +5,21 @@
     "packages/*"
   ],
   "scripts": {
-    "install:all": "npx lerna exec npm i",
-    "build:all": "npx lerna exec npm run build",
+    "install:all": "npm i && npx lerna exec npm i && npx lerna link",
+    "remove:nm": "rimraf node_modules && npx lerna exec rimraf node_modules",
+    "build": "npx lerna exec tsc",
+    "ts:check": "tsc --noEmit",
+    "remove:dist": "npx lerna exec rimraf dist",
     "file": "npx lerna exec npm run file",
-    "clean": "npx lerna run clean",
-    "test": "npx lerna run test",
-    "graph": "npx nx graph"
+    "lerna:clean": "npx lerna clean --yes && npx nx reset",
+    "test": "npx lerna exec jest",
+    "graph": "npx nx graph",
+    "create": "npm run install:all && npm run build:all",
+    "nuke": "npm run remove:nm && npm run remove:dist",
+    "regenerate": "npm run nuke && npm run create",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "npm run lint:fix",
+    "lint": "npx eslint . --ext .ts"
   },
   "devDependencies": {
     "@jest/globals": "^29.3.1",
@@ -19,12 +28,13 @@
     "@nrwl/nx-cloud": "latest",
     "@types/jest": "^27.5.2",
     "@types/node": "18.11.15",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.29.0",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "jest": "27.5.1",
     "lerna": "6.1.0",
     "nx": "15.3.3",
@@ -33,7 +43,10 @@
     "typescript": "4.9.4"
   },
   "dependencies": {
+    "@nestjs/common": "^8.0.0",
     "nx": "^15.3.3",
+    "rimraf": "^3.0.2",
+    "scripty": "^2.1.1",
     "ts-node": "10.9.1"
   }
 }
