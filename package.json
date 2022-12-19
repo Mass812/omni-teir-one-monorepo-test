@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
     "install:all": "npm i && npx lerna exec npm i && npx lerna link",
     "remove:nm": "rimraf node_modules && npx lerna exec rimraf node_modules",
@@ -17,9 +18,11 @@
     "create": "npm run install:all && npm run build:all",
     "nuke": "npm run remove:nm && npm run remove:dist",
     "regenerate": "npm run nuke && npm run create",
-    "lint:fix": "npm run lint -- --fix",
-    "format": "npm run lint:fix",
-    "lint": "npx eslint . --ext .ts"
+    "scaffold": "node scripts/generate/generate.js $1",
+    "lint": "npx eslint . --ext .ts --fix",
+    "pretty": "npx prettier --write .",
+    "format": "npm run lint && npm run pretty",
+    "git:commit": "git add . && git cz"
   },
   "devDependencies": {
     "@jest/globals": "^29.3.1",
@@ -39,6 +42,7 @@
     "lerna": "6.1.0",
     "nx": "15.3.3",
     "prettier": "^2.6.2",
+    "scripty": "^2.1.1",
     "ts-jest": "^27.1.5",
     "typescript": "4.9.4"
   },
@@ -46,7 +50,9 @@
     "@nestjs/common": "^8.0.0",
     "nx": "^15.3.3",
     "rimraf": "^3.0.2",
-    "scripty": "^2.1.1",
     "ts-node": "10.9.1"
+  },
+  "scripty": {
+    "path": "scripts/generate"
   }
 }

@@ -1,12 +1,10 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-      "composite": true,
-      "outDir": "dist",
-      "esModuleInterop": true,
-    },
-    "include": [
-        "**/*.ts",
-     ],
-     "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts", "dist/**/*"]
-   }
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "esModuleInterop": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts", "dist/**/*"]
+}

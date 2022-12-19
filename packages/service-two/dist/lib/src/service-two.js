@@ -1,13 +1,13 @@
 'use strict';
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.greetUser = exports.serviceTwo = void 0;
 const serviceTwo = () => {
-    const newLocal = 'Hello from serviceTwo file';
-    return newLocal;
+  const newLocal = 'Hello from serviceTwo file';
+  return newLocal;
 };
 exports.serviceTwo = serviceTwo;
 const greetUser = (name) => {
-    return `Hello ${name} from serviceTwo files
+  return `Hello ${name} from serviceTwo files
     `;
 };
 exports.greetUser = greetUser;

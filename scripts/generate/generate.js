@@ -1,17 +1,22 @@
 #!node
+/* eslint-disable no-undef */
 
 import process from 'node:process';
 import fs from 'node:fs';
 
+// get project root
+const rooted = process.cwd();
+
 // to run this in ROOT run the command node generate some-service
 
 // get service name
-const serviceName = process.argv[2];
+const serviceName = process.argv[2] ?? process.env.SERVICE_NAME;
+console.log('\x1b[36m', process.env.SERVICE_NAME, '\x1b[0m');
 const packageName = `@ts-os/${serviceName}`;
-
+process.emit();
 // directories
 const root = './scripts';
-const serviceRoot = `${root}/${process.argv[2]}`;
+const serviceRoot = `${rooted}/${root}/${process.argv[2]}`;
 const testDir = `${serviceRoot}/__test__`;
 const libDir = `${serviceRoot}/lib`;
 const srcDir = `${libDir}/src`;
@@ -43,7 +48,7 @@ const readmeFilePath = `${serviceRoot}/README.md`;
 const npmrcFilePath = `${serviceRoot}/.nvmrc`;
 const tsConfigFilePath = `${serviceRoot}/tsconfig.json`;
 const jestConfigFilePath = `${serviceRoot}/jest.config.js`;
-const eslintConfigFilePath = `${serviceRoot}/.eslintrc.js`;
+const eslintConfigFilePath = `${serviceRoot}/.eslintrc.json`;
 
 const filesCreatedArray = [
   indexFilePath,
@@ -62,27 +67,32 @@ let filesArray = [...filesCreatedArray];
 const createAsset = (filePath, content) => {
   if (fs.existsSync(filePath)) {
     // eslint-disable-next-line no-undef
-    console.log('\x1b[31m', `already created ${filePath} `);
     filesArray = filesArray.filter((file) => file !== filePath);
   } else {
     fs.writeFile(filePath, content, function (err) {
       if (err) {
         // eslint-disable-next-line no-undef
-        return console.log(err);
+        return console.log('\x1b[31m', `${err}`, '\x1b[0m');
       }
-      // eslint-disable-next-line no-undef
-      console.log('\x1b[36m', `file created ${filePath}`);
     });
   }
 };
 
 const createLogOutput = () => {
   // eslint-disable-next-line no-undef
-  if (!filesArray.length) console.log('\x1b[32m', 'All already files created');
-  filesArray.forEach((filePath) => {
-    // eslint-disable-next-line no-undef
-    console.log('\x1b[32m', `created: ${filePath}`);
-  });
+  if (!filesArray.length) {
+    console.log(
+      '\x1b[36m',
+      `🐠 All files already created for ${serviceName} 🦀`,
+      '\x1b[0m'
+    );
+  } else {
+    filesArray.forEach((filePath) => {
+      // eslint-disable-next-line no-undef
+      console.log('\x1b[36m', ` 🌊 generated: ${filePath}`);
+    });
+    console.log('\x1b[32m', `🌴🌴 Done creating ${serviceName} 🌴🌴 `);
+  }
 };
 
 // create package.json
@@ -138,16 +148,15 @@ const eslintConfig = JSON.stringify({
   extends: '../../.eslintrc',
   parserOptions: { project: 'tsconfig.json' },
 });
-const eslintConfigContent = `export default ${eslintConfig}`;
-createAsset(eslintConfigFilePath, eslintConfigContent);
+// const eslintConfigContent = `export default ${eslintConfig}`;
+createAsset(eslintConfigFilePath, eslintConfig);
 
 // create index.ts
 const indexContent = "export * from './src/index';";
 createAsset(indexFilePath, indexContent);
 
 // create test/index.test.ts
-const testContent =
-  "'use strict'; import serviceOne from '../lib/src/service-one'; import { describe, expect, test } from '@jest/globals'; describe('return string', () => {test('returns Hello from service one', () => { expect(serviceOne()).toBe('Hello from serviceOne'); console.log('test passed for serviceOne calling ServiceTwo');});});";
+const testContent = `'use strict'; import serviceOne from '../lib/src/${serviceName}'; import { describe, expect, test } from '@jest/globals'; describe('return string', () => {test('returns Hello from service one', () => { expect(serviceOne()).toBe('Hello from serviceOne'); console.log('test passed for serviceOne calling ServiceTwo');});});`;
 createAsset(testFilePath, testContent);
 
 // create lib/src/index.ts
@@ -159,5 +168,3 @@ const srcContent = `'use strict'; export default function ${
 createAsset(srcFilePath, srcContent);
 
 createLogOutput();
-// eslint-disable-next-line no-undef
-console.log('\x1b[32m', `🌴 done creating ${serviceName} 🌴 `);
