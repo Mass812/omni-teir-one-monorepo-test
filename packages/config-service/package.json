@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prettier:fix": "prettier --write \"lib/src/**/*.{ts}\""
+    "remove:nm": "rimraf node_modules",
+    "remove:dist": "rimraf dist"
   },
   "devDependencies": {
     "@types/config": "0.0.36"

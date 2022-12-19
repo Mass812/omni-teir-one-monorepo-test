@@ -17,6 +17,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "remove:nm": "rimraf node_modules",
+    "remove:dist": "rimraf dist"
+  },
   "dependencies": {
     "@ts-omni/service-two": "^0.0.0"
   }

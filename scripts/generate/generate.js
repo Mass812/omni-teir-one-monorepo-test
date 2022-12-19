@@ -95,6 +95,9 @@ const createLogOutput = () => {
   }
 };
 
+const rnm = 'remove:nm';
+const rd = 'remove:dist';
+
 // create package.json
 const packageJsonContent = JSON.stringify({
   name: packageName,
@@ -107,7 +110,12 @@ const packageJsonContent = JSON.stringify({
   directories: { lib: 'lib', test: '__tests__' },
   files: ['dist'],
   publishConfig: { access: 'public' },
-  scripts: { build: 'tsc', test: 'jest' },
+  scripts: {
+    build: 'tsc',
+    test: 'jest',
+    [rnm]: 'rimraf node_modules',
+    [rd]: 'rimraf dist',
+  },
 });
 createAsset(packageFilePath, packageJsonContent);
 
