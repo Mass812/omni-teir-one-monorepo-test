@@ -27,7 +27,12 @@
     "@types/config": "0.0.36"
   },
   "dependencies": {
-    "@nestjs/common": "^7.6.18",
+    "@nestjs/common": "8.0.0",
     "config": "3.3.1"
+  },
+  "peerDependencies": {
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.1.0",
+    "tslib": "2.3.0"
   }
 }

@@ -1,5 +1,44 @@
-node_modules/
-lerna-debug.log
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+# /dist - dont remove this
+# /tmp  - dont remove this
+/out-tsc
+/dist
+/packages/*/dist
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
 npm-debug.log
 yarn-error.log
-dist/
+lerna-debug.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+*.tar.gz
+libs/**/.npmrc
