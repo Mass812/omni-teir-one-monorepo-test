@@ -1,19 +1,17 @@
 {
   "name": "ts-omni",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
   "type": "module",
-
   "scripts": {
     "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "local:reregister": "npm run remove:nm && npm run remove:dist && npm run install:all && npm run build:all",
-    "local_registry": "verdaccio",
     "remove:local_registry": "rimraf ~/.local/share/verdaccio",
     "DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
-    "scaffold": "node scripts/generate/generate.js $1",
+    "scaffold": "node scripts/generate/generate.js $1 $2",
     "link": "npx lerna link",
     "graph": "npx nx graph",
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
@@ -32,7 +30,8 @@
     "format": "npm run lint && npm run pretty",
     "git:commit": "git add . && git cz",
     "prepare": "husky install",
-    "echo": "scripty"
+    "echo": "scripty",
+    "registry": "verdaccio --config .verdaccio.yaml"
   },
   "dependencies": {
     "@nestjs/common": "8.0.0",
@@ -64,11 +63,11 @@
     "lerna": "6.1.0",
     "nx": "15.3.3",
     "prettier": "2.6.2",
+    "rimraf": "3.0.2",
     "scripty": "2.1.1",
     "ts-jest": "27.1.5",
-    "typescript": "4.9.4",
     "ts-node": "10.9.1",
-    "rimraf": "3.0.2"
+    "typescript": "4.9.4"
   },
   "husky": {
     "hooks": {

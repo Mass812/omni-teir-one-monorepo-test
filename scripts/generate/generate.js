@@ -3,6 +3,7 @@
 
 import process from 'node:process';
 import fs from 'node:fs';
+import pjson from '../../package.json' assert { type: 'json' };
 
 // get project root
 const rooted = process.cwd();
@@ -11,7 +12,9 @@ const rooted = process.cwd();
 
 // get service name
 const serviceName = process.argv[2] ?? process.env.SERVICE_NAME;
-console.log('\x1b[36m', process.env.SERVICE_NAME, '\x1b[0m');
+const addJestDeps =
+  process.argv[3] && process.argv[3] === 'with-jest' ? true : false;
+
 const packageName = `@ts-os/${serviceName}`;
 process.emit();
 // directories
@@ -95,11 +98,69 @@ const createLogOutput = () => {
   }
 };
 
+const addElements = () => {
+  // create readme
+  const readmeContent = `# ${serviceName}`;
+  createAsset(readmeFilePath, readmeContent);
+
+  // create .nvmrc
+  const nvmrcContent = '14.19.1';
+  createAsset(npmrcFilePath, nvmrcContent);
+
+  // create tsconfig.json
+  const tsConfigContent = JSON.stringify({
+    extends: '../../tsconfig.json',
+    compilerOptions: {
+      composite: true,
+      declaration: true,
+      outDir: 'dist',
+      esModuleInterop: true,
+    },
+    include: ['**/*.ts'],
+    exclude: ['jest.config.ts', '**/*.spec.ts', '**/*.test.ts', 'dist/**/*'],
+  });
+  createAsset(tsConfigFilePath, tsConfigContent);
+
+  // create jest.config.js
+  const jestConfig = JSON.stringify({
+    displayName: serviceName,
+    testEnvironment: 'node',
+    transform: { '^.+\\.[tj]s$': 'ts-jest' },
+    moduleFileExtensions: ['ts', 'js', 'html'],
+  });
+  const jestConfigContent = `export default ${jestConfig}`;
+  createAsset(jestConfigFilePath, jestConfigContent);
+
+  // create .eslintrc.js
+  const eslintConfig = JSON.stringify({
+    extends: '../../.eslintrc',
+    parserOptions: { project: 'tsconfig.json' },
+  });
+  // const eslintConfigContent = `export default ${eslintConfig}`;
+  createAsset(eslintConfigFilePath, eslintConfig);
+
+  // create index.ts
+  const indexContent = "export * from './src/index';";
+  createAsset(indexFilePath, indexContent);
+
+  // create test/index.test.ts
+  const testContent = `'use strict'; import serviceOne from '../lib/src/${serviceName}'; import { describe, expect, test } from '@jest/globals'; describe('return string', () => {test('returns Hello from service one', () => { expect(serviceOne()).toBe('Hello from serviceOne'); console.log('test passed for serviceOne calling ServiceTwo');});});`;
+  createAsset(testFilePath, testContent);
+
+  // create lib/src/index.ts
+  const srcContent = `'use strict'; export default function ${
+    serviceName.split('-')[0]
+  }() { console.log('\x1b[34m%s\x1b[0m', "good from ${serviceName}"); return 'Hello from ${serviceName}';} ${
+    serviceName.split('-')[0]
+  }();`;
+  createAsset(srcFilePath, srcContent);
+};
+
 const rnm = 'remove:nm';
 const rd = 'remove:dist';
 
 // create package.json
-const packageJsonContent = JSON.stringify({
+const packageJson = {
   name: packageName,
   version: '0.0.0',
   description: serviceName,
@@ -116,63 +177,32 @@ const packageJsonContent = JSON.stringify({
     [rnm]: 'rimraf node_modules',
     [rd]: 'rimraf dist',
   },
-});
-createAsset(packageFilePath, packageJsonContent);
+};
 
-// create readme
-const readmeContent = `# ${serviceName}`;
-createAsset(readmeFilePath, readmeContent);
+let packageJsonContent = { ...packageJson };
 
-// create .nvmrc
-const nvmrcContent = '14.19.1';
-createAsset(npmrcFilePath, nvmrcContent);
+const jestPackageGlobals = '@jest/globals';
+const jestTypes = '@types/jest';
+const jestGlobalSemver = pjson.devDependencies['@jest/globals'];
+const jestSemver = pjson.devDependencies.jest;
+const jestTypesSemver = pjson.devDependencies['@types/jest'];
 
-// create tsconfig.json
-const tsConfigContent = JSON.stringify({
-  extends: '../../tsconfig.json',
-  compilerOptions: {
-    composite: true,
-    declaration: true,
-    outDir: 'dist',
-    esModuleInterop: true,
-  },
-  include: ['**/*.ts'],
-  exclude: ['jest.config.ts', '**/*.spec.ts', '**/*.test.ts', 'dist/**/*'],
-});
-createAsset(tsConfigFilePath, tsConfigContent);
+if (addJestDeps) {
+  console.log('\x1b[36m', 'adding jest deps', '\x1b[0m');
+  packageJsonContent = {
+    ...packageJson,
+    devDendancies: {
+      jest: jestSemver,
+      [jestPackageGlobals]: jestGlobalSemver,
+      [jestTypes]: jestTypesSemver,
+    },
+  };
+  addElements();
+} else {
+  console.log('\x1b[36m', 'Great no jest for this service 🦀', '\x1b[0m');
 
-// create jest.config.js
-const jestConfig = JSON.stringify({
-  displayName: serviceName,
-  testEnvironment: 'node',
-  transform: { '^.+\\.[tj]s$': 'ts-jest' },
-  moduleFileExtensions: ['ts', 'js', 'html'],
-});
-const jestConfigContent = `export default ${jestConfig}`;
-createAsset(jestConfigFilePath, jestConfigContent);
+  addElements();
+}
 
-// create .eslintrc.js
-const eslintConfig = JSON.stringify({
-  extends: '../../.eslintrc',
-  parserOptions: { project: 'tsconfig.json' },
-});
-// const eslintConfigContent = `export default ${eslintConfig}`;
-createAsset(eslintConfigFilePath, eslintConfig);
-
-// create index.ts
-const indexContent = "export * from './src/index';";
-createAsset(indexFilePath, indexContent);
-
-// create test/index.test.ts
-const testContent = `'use strict'; import serviceOne from '../lib/src/${serviceName}'; import { describe, expect, test } from '@jest/globals'; describe('return string', () => {test('returns Hello from service one', () => { expect(serviceOne()).toBe('Hello from serviceOne'); console.log('test passed for serviceOne calling ServiceTwo');});});`;
-createAsset(testFilePath, testContent);
-
-// create lib/src/index.ts
-const srcContent = `'use strict'; export default function ${
-  serviceName.split('-')[0]
-}() { console.log('\x1b[34m%s\x1b[0m', "good from ${serviceName}"); return 'Hello from ${serviceName}';} ${
-  serviceName.split('-')[0]
-}();`;
-createAsset(srcFilePath, srcContent);
-
+createAsset(packageFilePath, JSON.stringify(packageJsonContent));
 createLogOutput();

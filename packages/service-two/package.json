@@ -22,5 +22,10 @@
     "test": "jest",
     "remove:nm": "rimraf node_modules",
     "remove:dist": "rimraf dist"
+  },
+  "devDependencies": {
+    "jest": "27.5.1",
+    "@jest/globals": "29.3.1",
+    "@types/jest": "27.5.2"
   }
 }
