@@ -1,7 +1,11 @@
 {
   "name": "ts-omni",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Mass812/omni-teir-one-monorepo-test.git"
+  },
   "workspaces": [
     "packages/*"
   ],
@@ -10,6 +14,8 @@
     "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "local:reregister": "npm run remove:nm && npm run remove:dist && npm run install:all && npm run build:all",
     "remove:local_registry": "rimraf ~/.local/share/verdaccio",
+    "publish": "npx lerna exec 'npm publish --registry http://localhost:4873'",
+    "publish:npm": "echo 'TODO: publish with Lerna to private NPM'",
     "DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
     "scaffold": "node scripts/generate/generate.js $1 $2",
     "link": "npx lerna link",
@@ -30,7 +36,6 @@
     "format": "npm run lint && npm run pretty",
     "git:commit": "git add . && git cz",
     "prepare": "husky install",
-    "echo": "scripty",
     "registry": "verdaccio --config .verdaccio.yaml"
   },
   "dependencies": {

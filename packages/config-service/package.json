@@ -14,6 +14,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Mass812/omni-teir-one-monorepo-test.git"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -37,5 +41,6 @@
     "reflect-metadata": "0.1.13",
     "rxjs": "7.1.0",
     "tslib": "2.3.0"
-  }
+  },
+  "gitHead": "01f5c9a0e36232233528a0ea1c6914bff0cee00f"
 }

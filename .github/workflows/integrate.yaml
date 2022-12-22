@@ -1,0 +1,21 @@
+name: Monorepo Test and format
+on:
+  push:
+    branches: [ master, feature, chore, bugfix, hotfix, release, main, spike]
+      
+  pull_request:
+    branches:
+      - main
+jobs:
+   test_branch:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+          with:
+            node-version: '16'
+        - run: npm ci
+        - run: npm run test
+        - run: npm run format
+        - run: npm run lint
+        - run: npm run build

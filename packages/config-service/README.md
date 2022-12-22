@@ -1,11 +1,18 @@
-# `service-one`
+# `ts-omni/@cache-service`
 
-> TODO: description
 
-## Usage
+## Usage in other platforms
 
-```
-const serviceOne = require('service-one');
+import { someCacheService } from 'ts-omni/cache-service';
 
-// TODO: DEMONSTRATE API
-```
+
+## Development Notes
+
+All dependencies and peer dependencies should be installed via npm as usual in each project. Dev dependanicies hoist so are not needed in this package. 
+
+If you require another repository in this monorepo run 
+'''
+npm run link
+'''
+
+this allows Lerna to symlink any repository to another.
