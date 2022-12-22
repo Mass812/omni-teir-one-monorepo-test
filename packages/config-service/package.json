@@ -1,6 +1,6 @@
 {
   "name": "@ts-omni/cache-service",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "> TODO: description",
   "author": "Matt Wellman <mwellman@fabletics.com>",
   "homepage": "",
@@ -24,10 +24,10 @@
     "remove:dist": "rimraf dist"
   },
   "devDependencies": {
-    "@types/config": "0.0.36",
-    "jest": "27.5.1",
     "@jest/globals": "29.3.1",
-    "@types/jest": "27.5.2"
+    "@types/config": "0.0.36",
+    "@types/jest": "27.5.2",
+    "jest": "27.5.1"
   },
   "dependencies": {
     "@nestjs/common": "8.0.0",
