@@ -60,6 +60,13 @@ auth:
     # Rounds number for "bcrypt", will be ignored for other algorithms.
     # rounds: 10
 
+auth-memory:
+  # max_users: 1000
+  users:
+    foo:
+      name: test
+      password: test
+
 # https://verdaccio.org/docs/configuration#uplinks
 # a list of other known repositories we can talk to
 uplinks:
@@ -83,7 +90,7 @@ packages:
     publish: $authenticated
     unpublish: $authenticated
     proxy: npmjs
-    
+
   '**':
     # allow all users (including non-authenticated users) to read and
     # publish all packages

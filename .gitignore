@@ -6,7 +6,8 @@
 # /tmp  - dont remove this
 /out-tsc
 /dist
-/packages/*/dist
+/packages/*/dist/*
+/packages/*/dist/tsconfig.tsbuildinfo
 # dependencies
 node_modules
 

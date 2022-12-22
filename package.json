@@ -15,6 +15,8 @@
     "local:reregister": "npm run remove:nm && npm run remove:dist && npm run install:all && npm run build:all",
     "remove:local_registry": "rimraf ~/.local/share/verdaccio",
     "publish": "npx lerna exec 'npm publish --registry http://localhost:4873'",
+    "local-config": "verdaccio --config ./verdaccio/config.yaml && npm config set registry http://localhost:4873",
+    "npm-config": "npm config set registry https://registry.npmjs.org",
     "publish:npm": "echo 'TODO: publish with Lerna to private NPM'",
     "DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
     "scaffold": "node scripts/generate/generate.js $1 $2",
@@ -23,7 +25,7 @@
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
     "BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
     "install:all": "npm i && npm run link && npx lerna exec npm i",
-    "build": "npx lerna exec tsc",
+    "build": "npx lerna exec tsc && npm run pretty",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
     "clean-projects": "npm run remove:nm && npm run remove:dist",
@@ -35,8 +37,7 @@
     "pretty": "npx prettier --write .",
     "format": "npm run lint && npm run pretty",
     "git:commit": "git add . && git cz",
-    "prepare": "husky install",
-    "registry": "verdaccio --config .verdaccio.yaml"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "8.0.0",
