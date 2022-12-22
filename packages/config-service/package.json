@@ -1,6 +1,6 @@
 {
   "name": "@ts-omni/cache-service",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "tsos tier one cache-service",
   "author": "Matt Wellman <mwellman@fabletics.com>",
   "homepage": "",

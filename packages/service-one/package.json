@@ -1,6 +1,6 @@
 {
   "name": "@ts-omni/service-one",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "> TODO: description",
   "author": "Matt Wellman <mwellman@fabletics.com>",
   "homepage": "",
@@ -28,7 +28,7 @@
     "remove:dist": "rimraf dist"
   },
   "dependencies": {
-    "@ts-omni/service-two": "^0.1.2"
+    "@ts-omni/service-two": "^0.1.3"
   },
   "devDependencies": {
     "@jest/globals": "29.3.1",
