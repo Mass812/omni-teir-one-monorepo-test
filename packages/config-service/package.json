@@ -1,7 +1,7 @@
 {
   "name": "@ts-omni/cache-service",
   "version": "0.1.1",
-  "description": "> TODO: description",
+  "description": "tsos tier one cache-service",
   "author": "Matt Wellman <mwellman@fabletics.com>",
   "homepage": "",
   "license": "ISC",
@@ -42,5 +42,5 @@
     "rxjs": "7.1.0",
     "tslib": "2.3.0"
   },
-  "gitHead": "01f5c9a0e36232233528a0ea1c6914bff0cee00f"
+  "gitHead": "66a67b164753d96157fde19c417c4ee49d69efc5"
 }

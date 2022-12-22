@@ -43,3 +43,5 @@ testem.log
 Thumbs.db
 *.tar.gz
 libs/**/.npmrc
+verdaccio/storage/
+verdaccio/config/htpasswd
