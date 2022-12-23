@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
-      - run: npm run docker
       - run: npm install
+      - run: npm run docker
       - run: npm run install:all
       - run: npm run test
       - run: npm run format
