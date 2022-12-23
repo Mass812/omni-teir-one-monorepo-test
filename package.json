@@ -15,7 +15,7 @@
     "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "docker": "./verdaccio/docker/verdaccio.sh",
 
-    "lerna:version": "npx lerna version --no-push --registry http://localhost:4873",
+    "lerna:version": "npx lerna version --no-push --no-changelog --registry http://localhost:4873",
 
     "publish:local": "npx lerna exec 'npm publish --registry http://localhost:4873'",
     "local-config": "verdaccio --config ./verdaccio/conf/config.yaml && npm config set registry http://localhost:4873",
