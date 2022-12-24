@@ -11,7 +11,6 @@
   ],
   "type": "module",
   "scripts": {
-
     "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "docker": "./verdaccio/docker/verdaccio.sh",
 
@@ -21,11 +20,10 @@
     "versionToNpm": "npm set registry https://registry.npmjs.org",
     "echo": "`${file: ./lerna.json/version}`}",
     
-    
     "git:reset": "git reset --soft HEAD~1",
     "publish:local": "npx lerna exec 'npm publish --registry http://localhost:4873'",
     "publish:local:force": "npx lerna exec 'npm publish --registry http://localhost:4873 --force'",
-    "publish:npm": "echo 'TODO: publish with Lerna to private NPM'",
+    "publish:npm": "npx lerna exec 'npm publish --registry https://npm.pkg.github.com/@mass812'",
     "unpublish:local": "npx lerna exec 'npm unpublish $1 --registry http://localhost:4873'",
   
     "publish:npm:final": "echo 'TODO: publish with Lerna to private NPM'",
