@@ -5,15 +5,16 @@
     "type": "git",
     "url": "git@github.com:Mass812/omni-teir-one-monorepo-test.git"
   },
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "type": "module",
   "scripts": {
     "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "docker": "./verdaccio/docker/verdaccio.sh",
     "version": "npx lerna version --no-push --no-changelog",
+    "publish:try": "npx lerna publish --no-push --no-changelog --force-publish",
     "version:push": "npx lerna exec --no-changelog --registry http://localhost:4873",
     "versionToNpm": "npm set registry https://registry.npmjs.org",
     "echo": "`${file: ./lerna.json/version}`}",
