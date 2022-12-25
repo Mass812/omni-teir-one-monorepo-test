@@ -13,24 +13,17 @@
   "scripts": {
     "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "docker": "./verdaccio/docker/verdaccio.sh",
-
     "version": "npx lerna version --no-push --no-changelog --registry http://localhost:4873",
     "version:push": "npx lerna exec --no-changelog --registry http://localhost:4873",
-
     "versionToNpm": "npm set registry https://registry.npmjs.org",
     "echo": "`${file: ./lerna.json/version}`}",
-    
     "git:reset": "git reset --soft HEAD~1",
     "publish:local": "npx lerna exec 'npm publish --registry http://localhost:4873'",
     "publish:local:force": "npx lerna exec 'npm publish --registry http://localhost:4873 --force'",
     "publish:npm": "npx lerna exec 'npm publish --registry https://npm.pkg.github.com/@mass812'",
     "unpublish:local": "npx lerna exec 'npm unpublish $1 --registry http://localhost:4873'",
-  
     "publish:npm:final": "echo 'TODO: publish with Lerna to private NPM'",
     "DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
-
-
-
     "scaffold": "node scripts/generate/generate.js $1 $2",
     "link": "npx lerna link",
     "graph": "npx nx graph",
@@ -40,7 +33,7 @@
     "build": "npx lerna exec tsc && npm run pretty",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
-    "clean-projects": "npm run remove:nm && npm run remove:dist",
+    "clean-project": "npm run remove:nm && npm run remove:dist",
     "regenerate": "npm run nuke && npm run create",
     "TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
     "build:check": "tsc --noEmit",
