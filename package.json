@@ -8,14 +8,12 @@
   "workspaces": [
     "packages/*"
   ],
-  "private": false,
+  "private": true,
   "type": "module",
   "scripts": {
-    "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
+    "_________NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "docker": "./verdaccio/docker/verdaccio.sh",
-    "version": "npx lerna version --no-push --no-changelog",
-    "publish:try": "npx lerna publish --no-push --no-changelog --force-publish",
-    "publish:push": "npx lerna exec npm publish--registry http://localhost:4873",
+    "version": "npx lerna version --no-push --no-changelog --no-commit-hooks",
     "versionToNpm": "npm set registry https://registry.npmjs.org",
     "echo": "`${file: ./lerna.json/version}`}",
     "git:reset": "git reset --soft HEAD~1",
@@ -24,25 +22,26 @@
     "publish:npm": "npx lerna exec 'npm publish --registry https://npm.pkg.github.com/@mass812'",
     "unpublish:local": "npx lerna exec 'npm publish $1 --registry http://localhost:4873'",
     "publish:npm:final": "echo 'TODO: publish with Lerna to private NPM'",
-    "DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
+    "________DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
     "scaffold": "node scripts/generate/generate.js $1 $2",
     "link": "npx lerna link",
     "graph": "npx nx graph",
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
-    "BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
+    "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
     "install:all": "npm i && npm run link && npx lerna exec npm i",
     "build": "npx lerna exec tsc && npm run pretty",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
     "clean-project": "npm run remove:nm && npm run remove:dist",
     "regenerate": "npm run nuke && npm run create",
-    "TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
+    "_______TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
     "build:check": "tsc --noEmit",
     "test": "npx lerna exec jest",
     "lint": "npx eslint . --ext .ts --fix",
     "pretty": "npx prettier --write .",
     "format": "npm run lint && npm run pretty",
     "git:commit": "git add . && git cz",
+    "commit": "cz",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -84,6 +83,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run format && npm run test && npm run build:check"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
     }
   }
 }
