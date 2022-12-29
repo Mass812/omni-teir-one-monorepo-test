@@ -10,7 +10,6 @@ jobs:
     steps:
       - name: Placeholder
         run: echo "This job is a placeholder to prevent GitHub from showing an error."
-
 # jobs:
 #   publish-gpr:
 #     if: github.event.pull_request.merged
@@ -31,7 +30,7 @@ jobs:
 #         env:
 #           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #       - name: Git Identity
-#         # At the start of each workflow run, GitHub automatically creates a unique GITHUB_TOKEN secret to use in your workflow. 
+#         # At the start of each workflow run, GitHub automatically creates a unique GITHUB_TOKEN secret to use in your workflow.
 #         #You can use the GITHUB_TOKEN to authenticate in a workflow run.
 #         run: |
 #           git config --global user.name 'github-actions[bot]'
@@ -40,8 +39,6 @@ jobs:
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  
-        
 #       # Define ${CURRENT_VERSION}
 #       - name: Set Current Version
 #         run: |

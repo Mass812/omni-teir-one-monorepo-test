@@ -1,13 +1,21 @@
 'use strict';
 import { ConfigService } from '../src/index';
 import { describe, expect, test } from '@jest/globals';
-import { env } from 'process';
-import * as config from 'config';
+import config from 'config';
+import { defaultConfig } from './config';
 
 describe('Test ConfigModule', () => {
-  const hold = ConfigService.prototype.isDev;
-  console.log('\x1b[36m', env, config, '\x1b[0m');
-  test('Pass in Dev Param should return true: ', () => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
+  it('returns a mocked value of config.foo', () => {
+    jest.doMock('./config', () => ({ NODE_ENV: 'development' }));
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+
+    expect(defaultConfig.NODE_ENV).toBe('development');
+  });
+
+  it('Pass in Dev Param should return true: ', () => {
     expect(ConfigService).toBeDefined();
     // mock the config service
     jest.mock('../src/index', () => {
@@ -15,15 +23,16 @@ describe('Test ConfigModule', () => {
         ConfigService: jest.fn().mockImplementation(() => {
           return {
             get: (property: string): string => {
-              return 'development';
+              if (!defaultConfig[property]) return null;
+              if (property === 'developent') return 'development';
             },
             isDev: (): boolean => {
-              return true;
+              if (defaultConfig.NODE_ENV === 'developent') return true;
+              return false;
             },
           };
         }),
       };
     });
-    console.log(`test passed for config-service`);
   });
 });

@@ -12,14 +12,14 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["{projectRoot}/dist"]
-    },
-    "test": {
-      "dependsOn": ["^test"]
-    },
-    "file": {
-      "dependsOn": ["^file"]
     }
   },
   "defaultBase": "master",
-  "defaultProject": "ts-omni"
+  "defaultProject": "ts-omni",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [],
+    "production": ["default"]
+  }
 }
