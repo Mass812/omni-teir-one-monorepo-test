@@ -1,5 +1,5 @@
 import { APM_CONFIG_NAME, APM_WEBSERVER_CONFIG_NAME } from './apm.constants';
-import { HttpApmMiddleware } from '../core/middleware/http-apm.middleware';
+// import { HttpApmMiddleware } from '../core/middleware/http-apm.middleware';
 import { ApmService } from './apm.service';
 import { ApmSite24x7Store } from './repository/stores/apm-site247.store';
 import {
@@ -32,10 +32,10 @@ export class ApmModule {
     };
   }
 
-  configure(consumer: MiddlewareConsumer): void {
-    consumer.apply(HttpApmMiddleware).forRoutes({
-      path: '*',
-      method: RequestMethod.ALL,
-    });
-  }
+  // configure(consumer: MiddlewareConsumer): void {
+  //   consumer.apply(HttpApmMiddleware).forRoutes({
+  //     path: '*',
+  //     method: RequestMethod.ALL,
+  //   });
+  // }
 }
