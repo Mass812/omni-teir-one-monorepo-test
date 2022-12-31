@@ -30,7 +30,8 @@
     "rxjs": "7.1.0",
     "tslib": "2.3.0",
     "winston": "3.2.1",
-    "winston-graylog2": "^2.1.2"
+    "winston-graylog2": "^2.1.2",
+    "patch-package": "^6.5.0"
   },
   "devDendancies": {
     "@nestjs/testing": "8.0.0",
