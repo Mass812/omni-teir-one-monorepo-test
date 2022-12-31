@@ -7,11 +7,5 @@
     "esModuleInterop": true
   },
   "include": ["**/*.ts"],
-  "exclude": [
-    "jest.config.ts",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "dist/**/*",
-    "tsconfig.json"
-  ]
+  "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts", "dist/**/*"]
 }

@@ -1,7 +1,6 @@
 'use strict';
 import { ConfigService } from '../src/index';
 import { describe, expect, test } from '@jest/globals';
-import config from 'config';
 import { defaultConfig } from './config';
 
 describe('Test ConfigModule', () => {
@@ -22,7 +21,7 @@ describe('Test ConfigModule', () => {
       return {
         ConfigService: jest.fn().mockImplementation(() => {
           return {
-            get: (property: string): string => {
+            get: (property: string): any => {
               if (!defaultConfig[property]) return null;
               if (property === 'developent') return 'development';
             },

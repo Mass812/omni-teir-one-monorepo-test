@@ -1,7 +1,7 @@
 {
-  "name": "@ts-omni/service-test",
-  "version": "0.2.3",
-  "description": "service-test",
+  "name": "@ts-omni/logger-service",
+  "version": "0.0.0",
+  "description": "logger-service",
   "author": "TS-OS",
   "license": "ISC",
   "main": "dist/src/index.js",
@@ -22,7 +22,17 @@
     "remove:nm": "rimraf node_modules",
     "remove:dist": "rimraf dist"
   },
+  "dependencies": {
+    "@nestjs/common": "8.0.0",
+    "@ts-omni/config-service": "*",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.1.0",
+    "tslib": "2.3.0",
+    "winston": "3.2.1",
+    "winston-graylog2": "^2.1.2"
+  },
   "devDendancies": {
+    "@nestjs/testing": "8.0.0",
     "jest": "27.5.1",
     "@jest/globals": "29.3.1",
     "@types/jest": "27.5.2"

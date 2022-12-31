@@ -1,5 +1,5 @@
 {
-  "displayName": "service-test",
+  "displayName": "pubnub-service",
   "testEnvironment": "node",
   "transform": { "^.+\\.[tj]s$": "ts-jest" },
   "moduleFileExtensions": ["ts", "js", "html"]

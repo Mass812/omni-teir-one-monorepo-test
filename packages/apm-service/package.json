@@ -25,7 +25,10 @@
   "dependencies": {
     "@nestjs/common": "7.1.3",
     "apminsight": "1.7.1",
-    "@ts-omni/config-service": "*"
+    "@ts-omni/config-service": "*",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.1.0",
+    "tslib": "2.3.0"
   },
   "devDendancies": {
     "@nestjs/testing": "7.1.3",

@@ -1,6 +1,6 @@
 {
   "name": "@ts-omni/config-service",
-  "version": "0.2.3",
+  "version": "0.0.0",
   "description": "config-service",
   "author": "TS-OS",
   "license": "ISC",
@@ -30,6 +30,9 @@
   },
   "dependencies": {
     "@nestjs/common": "8.0.0",
-    "config": "3.3.1"
+    "config": "3.3.1",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.1.0",
+    "tslib": "2.3.0"
   }
 }

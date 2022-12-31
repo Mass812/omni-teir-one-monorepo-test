@@ -130,7 +130,7 @@ createAsset(eslintConfigFilePath, eslintConfig);
 const indexContent = "export * from './lib/index';";
 createAsset(indexFilePath, indexContent);
 // create test/index.test.ts
-const testContent = `'use strict'; import { ${serviceShortened} } from '../src/lib/index'; import { describe, expect, test } from '@jest/globals'; describe('return string', () => {test("string returned", () => { expect(${serviceShortened}()).toBe(\`Hello from ${serviceName}\`); console.log(\`test passed for ${serviceName}\`);});});`;
+const testContent = `'use strict'; import { ${serviceShortened} } from '../src/lib/index'; import { describe, expect, test } from '@jest/globals'; describe('return string', () => {test("string returned", () => { expect(${serviceShortened}).toBeDefined(); console.log(\`test passed for ${serviceName}\`);});});`;
 createAsset(testFilePath, testContent);
 // create lib/src/index.ts
 const srcContent = `'use strict'; export function ${serviceShortened}() { console.log('\x1b[34m%s\x1b[0m', "good from ${serviceName}"); return 'Hello from ${serviceName}';} ${serviceShortened}();`;
