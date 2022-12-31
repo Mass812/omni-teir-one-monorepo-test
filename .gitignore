@@ -11,6 +11,9 @@
 # dependencies
 node_modules
 
+#subrepos patches
+patches/winston-graylog2+2.1.2.patch
+
 # IDEs and editors
 /.idea
 .project
