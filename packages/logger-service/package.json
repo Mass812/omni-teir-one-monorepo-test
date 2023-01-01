@@ -21,7 +21,7 @@
     "test": "jest",
     "remove:nm": "rimraf node_modules",
     "remove:dist": "rimraf dist",
-    "postinstall": "npx patch-package"
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@nestjs/common": "8.0.0",

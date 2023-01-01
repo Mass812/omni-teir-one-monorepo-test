@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "rootDir": ".",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "paths": {},
     "module": "commonjs",
     "esModuleInterop": true,
     "declaration": true,
@@ -13,5 +18,5 @@
     "lib": ["es6"],
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "**/*.spec.ts", "dist/**/*", "tsconfig.json"]
+  "exclude": ["node_modules", "**/*.test.ts", "dist/**/*", "tsconfig.json"]
 }

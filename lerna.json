@@ -2,5 +2,6 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "useWorkspaces": true,
   "version": "0.2.3",
-  "packages": ["packages/*"]
+  "packages": ["packages/*"],
+  "nohoist": "packages/**/node_modules/winston-graylog2"
 }

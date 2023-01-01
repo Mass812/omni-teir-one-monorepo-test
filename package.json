@@ -33,6 +33,7 @@
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
     "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
     "install:all": "npm i && npm run link",
+    "postinstall": "node postinstall.js",
     "build": "npx lerna exec tsc && npm run pretty",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
@@ -48,6 +49,8 @@
     "commit": "cz"
   },
   "dependencies": {
+    "@lerna/child-process": "^6.3.0",
+    "@lerna/project": "^6.3.0",
     "@nestjs/common": "8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "8.0.0",
