@@ -33,7 +33,7 @@
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
     "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
     "install:all": "npm i && npm run link",
-    "postinstall": "node postinstall.js && npx patch-package",
+    "postinstall": "npx patch-package",
     "build": "npx lerna exec tsc && npm run pretty",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
