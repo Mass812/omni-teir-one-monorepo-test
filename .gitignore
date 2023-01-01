@@ -12,7 +12,7 @@
 node_modules
 
 #subrepos patches silence root for hoisted deps
-patches/winston-graylog2+2.1.2.patch
+#patches/winston-graylog2+2.1.2.patch
 
 
 # IDEs and editors
