@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "esModuleInterop": true,
     "declaration": true,
     "noImplicitAny": false,
     "removeComments": true,
@@ -9,7 +10,13 @@
     "experimentalDecorators": true,
     "target": "es6",
     "sourceMap": true,
-    "lib": ["es6"]
+    "lib": ["es6"],
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "**/*.spec.ts", "dist/**/*"]
+  "exclude": [
+    "node_modules",
+    "**/tests/*.test.ts",
+    "dist/**/*",
+    "tsconfig.json"
+  ]
 }

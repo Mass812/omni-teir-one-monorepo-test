@@ -1,73 +1,58 @@
 {
   "name": "ts-omni",
-  "version": "0.1.3",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git@github.com:Mass812/omni-teir-one-monorepo-test.git"
   },
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "type": "module",
+  "publishConfig": {
+    "@mass812:registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
-
-    "NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
+    "_________NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
     "docker": "./verdaccio/docker/verdaccio.sh",
-
-    "version": "npx lerna version --no-push --no-changelog --registry http://localhost:4873",
-    "version:push": "npx lerna exec --no-changelog --registry http://localhost:4873",
-
-    "versionToNpm": "npm set registry https://registry.npmjs.org",
+    "version": "npx lerna version --no-push --no-changelog --no-commit-hooks",
+    "publish": "npx lerna publish from-package --no-push --no-changelog --no-commit-hooks --registry http://localhost:4873/ --force-publish=*",
     "echo": "`${file: ./lerna.json/version}`}",
-    
-    
     "git:reset": "git reset --soft HEAD~1",
-    "publish:local": "npx lerna exec 'npm publish --registry http://localhost:4873'",
-    "publish:local:force": "npx lerna exec 'npm publish --registry http://localhost:4873 --force'",
-    "publish:npm": "echo 'TODO: publish with Lerna to private NPM'",
-    "unpublish:local": "npx lerna exec 'npm unpublish $1 --registry http://localhost:4873'",
-  
+    "local:publish": "npx lerna exec 'npm publish --registry http://localhost:4873/'",
+    "publish:local:force": "npx lerna exec 'npm publish --registry http://localhost:4873/ --force'",
+    "unpublish:local": "npx lerna exec 'npm unpublish --registry http://localhost:4873/ --force'",
     "publish:npm:final": "echo 'TODO: publish with Lerna to private NPM'",
-    "DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
-
-
-
+    "local:add:user": "npm adduser --registry http://localhost:4873/",
+    "publish:npm": "npx lerna exec 'npm publish --registry https://npm.pkg.github.com/@mass812'",
+    "________DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
     "scaffold": "node scripts/generate/generate.js $1 $2",
     "link": "npx lerna link",
     "graph": "npx nx graph",
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
-    "BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
-    "install:all": "npm i && npm run link && npx lerna exec npm i",
-    "build": "npx lerna exec tsc && npm run pretty",
+    "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
+    "install:all": "yarn && npx lerna exec yarn",
+    "install:workflow": "yarn && npx lerna exec yarn && node postinstall.js",
+    "postinstall": "node postinstall.js",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
-    "clean-projects": "npm run remove:nm && npm run remove:dist",
+    "clean-project": "npm run remove:nm && npm run remove:dist",
     "regenerate": "npm run nuke && npm run create",
-    "TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
+    "build": "npx lerna exec tsc && npm run pretty",
+    "_______TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
     "build:check": "tsc --noEmit",
     "test": "npx lerna exec jest",
     "lint": "npx eslint . --ext .ts --fix",
     "pretty": "npx prettier --write .",
     "format": "npm run lint && npm run pretty",
-    "git:commit": "git add . && git cz",
-    "prepare": "husky install"
-  },
-  "dependencies": {
-    "@nestjs/common": "8.0.0",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/platform-express": "8.0.0",
-    "nx": "15.3.3"
-  },
-  "peerDependencies": {
-    "reflect-metadata": "0.1.13",
-    "rxjs": "7.1.0",
-    "tslib": "2.3.0"
+    "precommit": "npm run test && npm run build:check && npm run format",
+    "commit": "git add . && git cz"
   },
   "devDependencies": {
     "@jest/globals": "29.3.1",
     "@nestjs/schematics": "8.0.0",
-    "@nestjs/testing": "8.0.0",
+    "@nestjs/testing": "^8.0.0",
     "@nrwl/nx-cloud": "15.0.2",
     "@types/jest": "27.5.2",
     "@types/node": "18.11.15",
@@ -78,9 +63,8 @@
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-prettier": "4.2.1",
-    "husky": "8.0.2",
     "jest": "27.5.1",
-    "lerna": "6.1.0",
+    "lerna": "^6.3.0",
     "nx": "15.3.3",
     "prettier": "2.6.2",
     "rimraf": "3.0.2",
@@ -89,9 +73,9 @@
     "ts-node": "10.9.1",
     "typescript": "4.9.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format && npm run test && npm run build:check"
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
     }
   }
 }

@@ -1,0 +1,2 @@
+export const APM_CONFIG_NAME = Symbol('APM_CONFIG_NAME');
+export const APM_WEBSERVER_CONFIG_NAME = Symbol('APM_WEBSERVER_CONFIG_NAME');

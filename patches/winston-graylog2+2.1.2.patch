@@ -1,0 +1,10 @@
+diff --git a/node_modules/winston-graylog2/index.d.ts b/node_modules/winston-graylog2/index.d.ts
+index 55d5b4a..c62473b 100644
+--- a/node_modules/winston-graylog2/index.d.ts
++++ b/node_modules/winston-graylog2/index.d.ts
+@@ -1,4 +1,4 @@
+-import * as TransportStream from "winston-transport";
++import TransportStream = require('winston-transport');
+ 
+ declare class Graylog2Transport extends TransportStream {
+   constructor(options?: Graylog2Transport.TransportOptions);
