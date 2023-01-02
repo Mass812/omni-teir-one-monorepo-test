@@ -1,5 +1,5 @@
 import { Injectable, Inject, OnModuleDestroy } from '@nestjs/common';
-import { ConfigService } from '@ts-omni/config-service/src/lib/config.service';
+import { ConfigService } from '@ts-omni/config-service';
 import * as os from 'os';
 import * as winston from 'winston';
 import WinstonGraylog2 = require('winston-graylog2');
