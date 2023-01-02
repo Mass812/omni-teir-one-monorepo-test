@@ -23,10 +23,10 @@ const absolutePath = __filename.split('packages/')[0];
 const formPath = __filename.slice(0, absolutePath.length);
 
 const packages = getPackagesSync();
+console.log('\x1b[31m', { repos: packages.map(n => n.location) }, '\x1b[0m');
 
 packages.forEach((pkg) => {
   const patches = join(pkg.location, 'patches');
-  console.log('\x1b[31m', { patches }, '\x1b[0m');
   if (existsSync(patches)) {
     const nmPatchModuleIndex = require.resolve('patch-package');
     const relPath = relative(__folderName, patches);
