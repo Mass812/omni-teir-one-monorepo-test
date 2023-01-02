@@ -1,4 +1,4 @@
-name: Monorepo Test and format
+name: Monorepo Yarn Integration
 on:
   push:
     branches: [master, feature, chore, bugfix, hotfix, release, main, spike]
