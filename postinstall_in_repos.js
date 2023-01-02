@@ -8,11 +8,13 @@ import { fileURLToPath } from 'url';
 import { getPackagesSync } from '@lerna/project';
 import { spawnStreaming } from '@lerna/child-process';
 import process from 'node:process';
-import fs from 'node:fs';
-import pjson from './package.json' assert { type: 'json' };
-import { stdout } from 'process';
 // get project root
 const root = process.cwd();
+
+const pathData = path.basename(process.cwd());
+const pathDataSafer = path.basename(path.resolve(process.cwd()));
+
+console.log('\x1b[36m', { pathData }, { pathDataSafer }, '\x1b[0m');
 
 const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
@@ -21,31 +23,29 @@ console.warn('__filename: ', __filename);
 console.warn('__folderName: ', __folderName);
 
 // remove root from path
-const absolutePath = __filename.split('packages/')[0];
+const absolutePath = __filename.split('packages/');
 const formPath = __filename.slice(0, absolutePath.length);
 
-// console.log(
-//   '\x1b[36m',
-//   { absolutePath },
-//   { formPath },
-//   absolutePath.length,
-//   { root },
-//   '\x1b[0m'
-// );
+const newFormedPath = pathDataSafer;
+console.log('\x1b[31m', { newFormedPath }, '\x1b[0m');
+
+console.log(
+  '\x1b[36m',
+  { absolutePath },
+  { formPath },
+  absolutePath.length,
+  { root },
+  '\x1b[0m'
+);
 
 const packages = getPackagesSync();
 
 packages.forEach((pkg) => {
   const patches = join(pkg.location, 'patches');
-  console.log('\x1b[31m', patches, '\x1b[0m');
   if (existsSync(patches)) {
     const nmPatchModuleIndex = require.resolve('patch-package');
     const relPath = relative(__folderName, patches);
     const packageWithPatch = pkg.location.split('/').reverse()[0];
-
-    const person = 'matt/wellman/1';
-    const getFirstName = person.split('/').reverse()[0];
-    console.log('\x1b[34m\x1b[47m', { getFirstName }, '\x1b[0m');
 
     console.log(
       '\x1b[36m',
