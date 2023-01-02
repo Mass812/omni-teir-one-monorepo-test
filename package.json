@@ -34,7 +34,7 @@
     "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
     "install:all": "npm i && npx lerna exec npm i && npm run link",
     "install:workflow": "npm i && npx lerna exec npm i && npm run link",
-    "postinstall": "npx patch-package && node postinstall.js",
+    "postinstall": "node postinstall.js",
     "build": "npx lerna exec tsc && npm run pretty",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
