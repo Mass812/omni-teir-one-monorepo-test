@@ -1,7 +1,7 @@
 {
-  "name": "@ts-omni/logger-service",
+  "name": "@ts-omni/winston-greylog-two",
   "version": "0.0.0",
-  "description": "logger-service",
+  "description": "winston-greylog-two",
   "author": "TS-OS",
   "license": "ISC",
   "main": "dist/src/index.js",
@@ -23,17 +23,11 @@
     "remove:dist": "rimraf dist"
   },
   "dependencies": {
-    "@nestjs/common": "8.0.0",
-    "@ts-omni/config-service": "*",
-    "@ts-omni/winston-greylog-two": "*",
-    "patch-package": "^6.5.0",
-    "reflect-metadata": "0.1.13",
-    "rxjs": "7.1.0",
-    "tslib": "2.3.0",
-    "winston": "3.2.1"
+    "graylog2": "^0.2.1",
+    "winston": "^3.2.1",
+    "winston-transport": "^4.3.0"
   },
   "devDendancies": {
-    "@nestjs/testing": "8.0.0",
     "jest": "27.5.1",
     "@jest/globals": "29.3.1",
     "@types/jest": "27.5.2"

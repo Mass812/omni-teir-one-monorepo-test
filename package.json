@@ -34,19 +34,19 @@
     "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
     "install:all": "npm i && npx lerna exec npm i && npm run link",
     "install:workflow": "npm i && npx lerna exec npm i && node postinstall.js",
-
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
     "clean-project": "npm run remove:nm && npm run remove:dist",
     "regenerate": "npm run nuke && npm run create",
     "build": "npx lerna exec tsc && npm run pretty",
     "_______TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
-    "build:check": "tsc --noEmit",
+    "check-links": "npm ls --link && npx lerna list",
     "test": "npx lerna exec jest",
     "lint": "npx eslint . --ext .ts --fix",
     "pretty": "npx prettier --write .",
     "format": "npm run lint && npm run pretty",
-    "precommit": "npm run test && npm run build:check && npm run format",
+    "_________GIT_AND_COMMIT": "echo 'GIT AND COMMIT SECTION',",
+    "stage": "npm run build && npm run test && npm run format",
     "commit": "git add . && git cz"
   },
   "dependencies": {

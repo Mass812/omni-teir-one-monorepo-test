@@ -1,9 +1,10 @@
 import { Injectable, Inject, OnModuleDestroy } from '@nestjs/common';
-import { ConfigService } from '@ts-omni/config-service/src/lib/config.service';
+import { ConfigService } from '@ts-omni/config-service';
 import * as os from 'os';
 import * as winston from 'winston';
-import WinstonGraylog2 = require('winston-graylog2');
-
+// import WinstonGraylog2 = require('@ts-omni/winston-greylog-two');
+// import { Graylog2 as WinstonGraylog2 } from '@ts-omni/winston-greylog-two';
+import { Graylog2 as WinstonGraylog2 } from '@ts-omni/winston-greylog-two';
 type Meta = Record<string, string | number | any>;
 
 @Injectable()

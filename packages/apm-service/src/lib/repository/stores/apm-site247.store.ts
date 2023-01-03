@@ -5,7 +5,7 @@ import {
 } from '../../apm.constants';
 import { ApmSite24x7ConfigDto } from '../../dto/apm-site24x7-config.dto';
 import { ApmWrapper } from '../../apm-wrapper';
-import { ConfigService } from '../../../../../config-service/dist/src';
+import { ConfigService } from '@ts-omni/config-service';
 import { Inject, Injectable } from '@nestjs/common';
 import { IApmRepository } from '../../interfaces/apm-repository.interface';
 
