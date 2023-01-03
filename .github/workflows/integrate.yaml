@@ -1,7 +1,8 @@
 name: Monorepo Test and format
 on:
   push:
-    branches: [master, feature, chore, bugfix, hotfix, release, main, spike]
+    branches: 
+      - '**' 
 
 jobs:
   integration_check:
