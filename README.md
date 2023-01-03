@@ -9,12 +9,6 @@ npm run install:all
 ```
 
 The **postinstall script** in root will run npx lerna link to ensure linking occurs. _Patch-Package does not work_ well in monorepos as all dependencies are hoisted to root --and therefore will throw an error as the patch will not find the patch-package node_module
-For production environments...
-
-```sh
-npm install --production
-NODE_ENV=production node app
-```
 
 ## Scaffold a Repo fast
 
