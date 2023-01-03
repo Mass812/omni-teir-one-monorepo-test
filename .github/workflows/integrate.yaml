@@ -1,8 +1,8 @@
 name: Monorepo Test and format
 on:
   push:
-    branches: 
-      - '**' 
+    branches:
+      - '**'
 
 jobs:
   integration_check:
@@ -13,5 +13,6 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: npm run install:all
+      - run: npm run build
       - run: npm run test
       - run: npm run format

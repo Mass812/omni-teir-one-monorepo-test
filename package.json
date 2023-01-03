@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Mass812/omni-teir-one-monorepo-test.git"
+    "url": "git+ssh://git@github.com/Mass812/omni-teir-one-monorepo-test.git"
   },
   "workspaces": [
     "packages/*"
@@ -32,15 +32,15 @@
     "graph": "npx nx graph",
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
     "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
-    "install:all": "npm i && npx lerna exec npm i && npm run link",
-    "clean-project": "npm run remove:nm && npm run remove:dist && rm -rf node_modules && rm -rf package-lock.json",
+    "install:all": "npm i && npx lerna exec npm i",
+    "clean:project": "npm run remove:nm && npm run remove:dist && rm -rf node_modules && rm -rf package-lock.json",
     "postinstall": "npx lerna link",
     "remove:dist": "npx lerna run remove:dist",
     "remove:nm": "npx lerna run remove:nm",
     "regenerate": "npm run nuke && npm run create",
     "build": "npx lerna exec tsc && npm run pretty",
     "_______TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
-    "check-links": "npm ls --link && npx lerna list",
+    "check:links": "npm ls --link && npx lerna list",
     "test": "npx lerna exec jest",
     "lint": "npx eslint . --ext .ts --fix",
     "pretty": "npx prettier --write .",
@@ -90,5 +90,13 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  }
+  },
+  "description": "very generic repo to explore lerna",
+  "bugs": {
+    "url": "https://github.com/Mass812/omni-teir-one-monorepo-test/issues"
+  },
+  "homepage": "https://github.com/Mass812/omni-teir-one-monorepo-test#readme",
+  "main": "*",
+  "author": "",
+  "license": "ISC"
 }
