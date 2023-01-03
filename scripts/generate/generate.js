@@ -13,11 +13,12 @@ const serviceShortened = serviceName.split('-')[0];
 const packageName = `@ts-omni/${serviceName}`;
 process.emit();
 // directories
-const root = './scripts';
+const root = './packages';
 const serviceRoot = `${rooted}/${root}/${process.argv[2]}`;
 const testDir = `${serviceRoot}/__test__`;
 const sourceDir = `${serviceRoot}/src`;
 const libDir = `${sourceDir}/lib`;
+
 if (!serviceName) {
   // eslint-disable-next-line no-undef
   console.log('\x1b[31m', 'please provide a service name');
@@ -158,15 +159,36 @@ const packageJson = {
   },
 };
 let packageJsonContent = { ...packageJson };
+
+// test dependencies
 const jestPackageGlobals = '@jest/globals';
 const jestTypes = '@types/jest';
 const jestGlobalSemver = pjson.devDependencies['@jest/globals'];
 const jestSemver = pjson.devDependencies.jest;
 const jestTypesSemver = pjson.devDependencies['@types/jest'];
 
+// nest dependencies
+const nestCommon = '@nestjs/common';
+const nestJsCommon = pjson.dependencies['@nestjs/common'];
+const nestReflexMeta = 'reflect-metadata';
+const nestDepReflex = pjson.dependencies['reflect-metadata'];
+const nestRxjs = 'rxjs';
+const nestRDepxjs = pjson.dependencies['rxjs'];
+const nestTsLib = 'tslib';
+const nestDepTsLib = pjson.dependencies['tslib'];
+const nestjsTesting = '@nestjs/testing';
+const nestDepTesting = pjson.dependencies['@nestjs/testing'];
+
 packageJsonContent = {
   ...packageJson,
+  dependencies: {
+    [nestCommon]: nestJsCommon,
+    [nestReflexMeta]: nestDepReflex,
+    [nestRxjs]: nestRDepxjs,
+    [nestTsLib]: nestDepTsLib,
+  },
   devDendancies: {
+    [nestjsTesting]: nestDepTesting,
     jest: jestSemver,
     [jestPackageGlobals]: jestGlobalSemver,
     [jestTypes]: jestTypesSemver,
