@@ -1,0 +1,36 @@
+{
+  "name": "@ts-omni/log-service",
+  "version": "0.0.0",
+  "description": "log-service",
+  "author": "TS-OS",
+  "license": "ISC",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "remove:nm": "rimraf node_modules",
+    "remove:dist": "rimraf dist"
+  },
+  "dependencies": {
+    "@nestjs/common": "8.0.0",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.1.0",
+    "tslib": "2.3.0"
+  },
+  "devDendancies": {
+    "jest": "27.5.1",
+    "@jest/globals": "29.3.1",
+    "@types/jest": "27.5.2"
+  }
+}

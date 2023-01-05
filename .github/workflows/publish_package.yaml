@@ -1,45 +1,41 @@
-name: Publish Package
+# name: Publish
 # on:
-#   push:
+#   pull_request:
+#     types: [closed]
 #     branches:
-#       - master
+#       - development
+#       - main
+
+# settings in repo will not allow failed checks to be merged into main or development
+# so this will not run in those conditions as a prevention to release errors
 
 # jobs:
-#   placeholder:
+#   publish:
+#     if: github.event.pull_request.merged == true
 #     runs-on: ubuntu-latest
+
 #     steps:
-#       - name: Placeholder
-#         run: echo "This job is a placeholder to prevent GitHub from showing an error."
-# name: Node.js Package
+#     - name: "Checkout"
+#       uses: actions/checkout@v3
+#       with:
+#         fetch-depth: 0
 
-on:
-  release:
-    types: [created]
+#     - name: "Use NodeJS 14"
+#       uses: actions/setup-node@v3
+#       with:
+#          node-version-file: '.nvmrc'
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-      - run: npm ci
-      - run: npm test
+#     - name: "Version and publish" # Interesting step
+#       env:
+#         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       run: |
+#         git config user.name "${{ github.actor }}"
+#         git config user.email "${{ github.actor}}@users.noreply.github.com"
 
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#         if [ ${{ github.base_ref }} = development ]; then
+#           npx lerna version --conventional-commits --conventional-prerelease --preid beta --yes
+#         else
+#           npx lerna version --conventional-commits --conventional-graduate --yes
+#         fi
+
+#         npx lerna publish from-git --yes

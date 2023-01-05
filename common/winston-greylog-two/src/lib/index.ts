@@ -1,0 +1,106 @@
+'use strict';
+
+// const Transport = require('winston-transport');
+// const { graylog: Graylog2Client } = require('graylog2');
+
+import Transport from 'winston-transport';
+import { iGraylog2Transport, Graylog2Transport } from './types/types';
+import { graylog as Graylog2Client } from 'graylog2';
+
+/**
+ * Remapping winston level on graylog
+ *
+ * @param  {String} winstonLevel
+ * @return {String}
+ */
+const getMessageLevel = (function () {
+  const levels = {
+    emerg: 'emergency',
+    alert: 'alert',
+    crit: 'critical',
+    error: 'error',
+    warning: 'warning',
+    warn: 'warning',
+    notice: 'notice',
+    info: 'info',
+    debug: 'debug',
+  };
+  return function (winstonLevel) {
+    return levels[winstonLevel] || levels.info;
+  };
+})();
+// export a class Graylog2 with type iGraylog2Transport
+
+/** Class representing the Graylog2 Winston Transport */
+export class Graylog2 extends Transport {
+  graylog: iGraylog2Transport['GraylogOptions'];
+  name: string;
+  exceptionsLevel: string;
+  silent: boolean;
+  handleExceptions: boolean;
+  graylog2Client: Graylog2Transport;
+  staticMeta: iGraylog2Transport['StaticMeta'];
+
+  /**
+   * Create the transport
+   * @param {Object} options - The options for configuring the transport.
+   */
+  constructor(options: any) {
+    super(options);
+
+    options = options || {};
+    this.graylog = options.graylog;
+    if (!this.graylog) {
+      this.graylog = {
+        servers: [
+          {
+            host: 'localhost',
+            port: 12201,
+          },
+        ],
+      };
+    }
+
+    this.name = options.name || 'graylog2';
+    this.exceptionsLevel = options.exceptionsLevel || 'not-default';
+
+    this.silent = options.silent || false;
+    this.handleExceptions = options.handleExceptions || false;
+
+    this.graylog2Client = new Graylog2Client(this.graylog);
+    this.staticMeta = options.staticMeta || {};
+
+    this.graylog2Client.on('error', function (error) {
+      console.error('Error while trying to write to graylog2:', error);
+    });
+  }
+
+  /**
+   * Log a message to Graylog2.
+   *
+   * @param {Object} info - An object containing the `message` and `info`.
+   * @param {function} callback - Winston's callback to itself.
+   */
+  log(
+    info: { message: string; level: string; metadata: any },
+    callback: () => void
+  ) {
+    const { message, level, metadata } = info;
+    const meta = Object.assign({}, metadata, this.staticMeta);
+    const cleanedMessage = message || '';
+    const shortMessage = cleanedMessage.substring(0, 100);
+
+    // prettier-ignore
+    setImmediate(() => {
+      this.graylog2Client[getMessageLevel(level)](shortMessage, cleanedMessage, meta);
+    });
+    callback();
+  }
+
+  /**
+   * Closes the Graylog2 Winston Transport.
+   */
+  close() {
+    this.graylog2Client.close();
+  }
+}
