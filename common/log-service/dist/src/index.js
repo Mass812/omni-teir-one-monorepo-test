@@ -30,9 +30,6 @@ var __exportStar =
         __createBinding(exports, m, p);
   };
 Object.defineProperty(exports, '__esModule', { value: true });
-__exportStar(require('./lib/apm.module'), exports);
-__exportStar(require('./lib/apm.service'), exports);
-__exportStar(require('./lib/apm-wrapper'), exports);
-__exportStar(require('./lib/interfaces/apm-repository.interface'), exports);
-__exportStar(require('./lib/repository/stores/apm-site247.store'), exports);
+__exportStar(require('./lib/log-service.module'), exports);
+__exportStar(require('./lib/log-service.service'), exports);
 //# sourceMappingURL=index.js.map

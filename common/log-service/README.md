@@ -42,10 +42,10 @@ You can also use the other methods of the LogService, such as warn and error, to
 
 #### Log Functions
 
-  log(level, message, metaData);
-  warn | verbose | error | info (message, metaData)
-  
-  **Note** 
-  The logger and queue methods are public. This was so the unit tests could be written and pass successfully.
+log(level, message, metaData);
+warn | verbose | error | info (message, metaData)
 
-Note this is a play off Blayters implementation. 
+**Note**
+The logger and queue methods are public. This was so the unit tests could be written and pass successfully.
+
+Note this is a play off Blayters implementation.

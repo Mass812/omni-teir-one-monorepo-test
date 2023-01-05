@@ -91,7 +91,7 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "description": "very generic repo to explore lerna",
+  "description": "TSOS Omni Monorepo",
   "bugs": {
     "url": "https://github.com/Mass812/omni-teir-one-monorepo-test/issues"
   },

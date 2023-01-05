@@ -1,8 +1,9 @@
 # TS-Omni Monorepo
 
-&#x1F26A0; A Few upfront concerns: 
+&#x1F26A0; A Few upfront concerns:
+
 - patch-package does not work well in monorepos, can run a patch to handle local fix but pipelines are an issue.
-- where are we drawing the lines between SavageX & Fabletics ? for example which logger should we be pulling into this monorepo? 
+- where are we drawing the lines between SavageX & Fabletics ? for example which logger should we be pulling into this monorepo?
 
 ## Lerna
 
