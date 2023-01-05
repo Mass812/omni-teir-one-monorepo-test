@@ -13,7 +13,7 @@ const serviceShortened = serviceName.split('-')[0];
 const packageName = `@ts-omni/${serviceName}`;
 process.emit();
 // directories
-const root = './packages';
+const root = './scaffolds';
 const serviceRoot = `${rooted}/${root}/${process.argv[2]}`;
 const testDir = `${serviceRoot}/__test__`;
 const sourceDir = `${serviceRoot}/src`;

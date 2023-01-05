@@ -6,7 +6,7 @@
     "url": "git+ssh://git@github.com/Mass812/omni-teir-one-monorepo-test.git"
   },
   "workspaces": [
-    "packages/*"
+    "common/*"
   ],
   "private": true,
   "type": "module",
@@ -14,11 +14,11 @@
     "@mass812:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "_________NPM_REGISTRY_AND_PACKAGES": "echo 'NPM_REGISTRY_AND_PACKAGES SECTION',",
+    "_________NPM_REGISTRY_AND_PACKAGES_____________________": "echo 'NPM,",
     "docker": "./verdaccio/docker/verdaccio.sh",
     "version": "npx lerna version --no-push --no-changelog --no-commit-hooks",
     "publish": "npx lerna publish from-package --no-push --no-changelog --no-commit-hooks --registry http://localhost:4873/ --force-publish=*",
-    "echo": "`${file: ./lerna.json/version}`}",
+    "currentVersion": "`${file: ./lerna.json/version}`}",
     "git:reset": "git reset --soft HEAD~1",
     "local:publish": "npx lerna exec 'npm publish --registry http://localhost:4873/'",
     "publish:local:force": "npx lerna exec 'npm publish --registry http://localhost:4873/ --force'",
@@ -26,12 +26,12 @@
     "publish:npm:final": "echo 'TODO: publish with Lerna to private NPM'",
     "local:add:user": "npm adduser --registry http://localhost:4873/",
     "publish:npm": "npx lerna exec 'npm publish --registry https://npm.pkg.github.com/@mass812'",
-    "________DEVELOPMENT_SECTION": "echo 'DEVELOPMENT_SECTION SECTION',",
+    "________DEVELOPMENT_SECTION__________________________": "echo 'DEV_SEC',",
     "scaffold": "node scripts/generate/generate.js $1 $2",
     "link": "npx lerna link",
     "graph": "npx nx graph",
     "lerna:clean": "npx lerna clean --yes && npx nx reset",
-    "________BUILD_INSTALL_AND_DELETE": "echo 'BUILD, INSTALL && DELETE SECTION',",
+    "________BUILD_INSTALL_AND_DELETE________________________": "echo 'BID',",
     "install:all": "npm i && npx lerna exec npm i",
     "clean:project": "npm run remove:nm && npm run remove:dist && rm -rf node_modules && rm -rf package-lock.json",
     "postinstall": "npx lerna link",
@@ -39,13 +39,13 @@
     "remove:nm": "npx lerna run remove:nm",
     "regenerate": "npm run nuke && npm run create",
     "build": "npx lerna exec tsc && npm run pretty",
-    "_______TEST_CHECK_AND_FORMAT": "echo 'TEST_CHECK_AND_FORMAT SECTION',",
+    "_______TEST_CHECK_AND_FORMAT____________________________": "echo 'TSF',",
     "check:links": "npm ls --link && npx lerna list",
     "test": "npx lerna exec jest",
     "lint": "npx eslint . --ext .ts --fix",
     "pretty": "npx prettier --write .",
     "format": "npm run lint && npm run pretty",
-    "_________GIT_AND_COMMIT": "echo 'GIT AND COMMIT SECTION',",
+    "_________GIT_AND_COMMIT_________________________________": "echo 'GIT',",
     "stage": "npm run build && npm run test && npm run format",
     "commit": "git add . && git cz"
   },
